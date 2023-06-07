@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors!</title>
+</head>
+<body>
+    <script>
+        // 1- Create array of all possible choices in the game Rock, Paper, Scissors.
+        const gameChoices = ['rock','paper','scissors'];
+        // 2- Create a function to get the computer choice.
+        function getComputerChoice() {
+            // get random number between 0-2 and use to return random choice for the computer to play.
+            const choiceIndex = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
+            // console.log(choiceIndex);
+            return gameChoices[choiceIndex];
+        }
+        //console.log(computerChoice());
+
+        // 3- Store computer choice into a variable.
+        const computerChoice = getComputerChoice();
+        // Prompt the player to enter a choice.
+        // Validate player input.
+        // Compare the computer choice and the player choice and display a message of the winner.
+    </script>
+</body>
+</html>
