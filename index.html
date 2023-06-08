@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors!</title>
 </head>
+
 <body>
     <script>
-        // 1- Create array of all possible choices in the game Rock, Paper, Scissors.
-        const gameChoices = ['rock','paper','scissors'];
-        // 2- Create a function to get the computer choice.
+        // 1-   Create array of all possible choices in the game Rock, Paper, Scissors.
+        const gameChoices = ['rock', 'paper', 'scissors'];
+        // 2-   Create a function to get the computer choice.
         function getComputerChoice() {
             // get random number between 0-2 and use to return random choice for the computer to play.
             const choiceIndex = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
@@ -21,9 +23,71 @@
 
         // 3- Store computer choice into a variable.
         const computerChoice = getComputerChoice();
-        // Prompt the player to enter a choice.
-        // Validate player input.
+
+        // 4-   Prompt the player to enter a choice.
+        // 4.a  Create a function to check palyer input is valid and allowed in the game.
+        function isValidChoice(choice) {
+            // check the input is string
+            if (typeof (choice) === 'string') {
+                // normilize the input and make it lowercase for accurate comparision
+                choice = choice.toLowerCase();
+                // return true if the choice in the array of the gameChoices
+                return gameChoices.indexOf(choice) >= 0 ? true : false;
+            }
+            return false;
+        }
+
+        // 4.b  Declare  variable to hold the player choice
+        let playerChoice = '';
+        // 4.c  Promopt player to enter choice, and repeat the prompt if the input is not valid. 
+        while (!isValidChoice(playerChoice)) {
+            // The input transformed to lowercase for accurate comparison.
+            playerChoice = prompt('Enter one of these values (Rock | Paper | Scissors) to play:').toLowerCase();
+        }
+
         // Compare the computer choice and the player choice and display a message of the winner.
+        function playRound(playerChoice, computerChoice) {
+            if (playerChoice === computerChoice) {
+                return 'tie';
+            }
+            else if (playerChoice === 'rock') {
+                if (computerChoice == 'paper') {
+                    return 'computer';
+                }
+                else {
+                    return 'player';
+                }
+            }
+            else if (playerChoice === 'paper') {
+                if (computerChoice == 'scissors') {
+                    return 'computer';
+                }
+                else {
+                    return 'player';
+                }
+            }
+            else if (playerChoice === 'scissors') {
+                if (computerChoice == 'rock') {
+                    return 'computer';
+                }
+                else {
+                    return 'player';
+                }
+            }
+        }
+
+        // Play one round:
+        switch (playRound(playerChoice, computerChoice)) {
+            case 'tie':
+                console.log(`Computer choice ${computerChoice} and you choosed ${playerChoice}, it's a Tie`);
+                break;
+            case 'player':
+                console.log(`Computer choice ${computerChoice} and you choosed ${playerChoice}, you WON!!`);
+                break;
+            case 'computer':
+                console.log(`Computer choice ${computerChoice} and you choosed ${playerChoice}, you lose!!`);
+        }
     </script>
 </body>
+
 </html>
