@@ -10,6 +10,12 @@
 
 <body>
     <script>
+
+        //
+        // Pre: Variables to hold player and computer choices.
+        let computerChoice = '';
+        let playerChoice = '';
+
         // 1-   Create array of all possible choices in the game Rock, Paper, Scissors.
         const gameChoices = ['rock', 'paper', 'scissors'];
         // 2-   Create a function to get the computer choice.
@@ -48,7 +54,11 @@
 
 
         // Compare the computer choice and the player choice and display a message of the winner.
-        function playRound(playerChoice, computerChoice) {
+        function playRound() {
+            // Get computer choice.
+            computerChoice = getComputerChoice();
+            // Get player choice
+            playerChoice = getPlayerChoice();
             if (playerChoice === computerChoice) {
                 return 'tie';
             }
@@ -80,22 +90,38 @@
 
         // Play one round:
 
-        // Get computer choice.
-        const computerChoice = getComputerChoice();
-        // Get player choice
-        const playerChoice = getPlayerChoice();
 
-        // Play!
-        switch (playRound(playerChoice, computerChoice)) {
-            case 'tie':
-                console.log(`Computer choice ${computerChoice} and you choosed ${playerChoice}, it's a Tie`);
-                break;
-            case 'player':
-                console.log(`Computer choice ${computerChoice} and you choosed ${playerChoice}, you WON!!`);
-                break;
-            case 'computer':
-                console.log(`Computer choice ${computerChoice} and you choosed ${playerChoice}, you lose!!`);
+        // Play five rounds
+        // Create variables to hold score for computer, player and tie rounds
+        let computerWinsCount = 0;
+        let playerWinsCount = 0;
+        let tieCount = 0;
+        // Play 5 rounds:
+        for (let index = 0; index < 5; index++) {
+            switch (playRound()) {
+                case 'tie':
+                    //log result to the console
+                    console.log(`Computer choice ${computerChoice} and you choosed ${playerChoice}, it's a Tie`);
+                    // increase tie counter
+                    tieCount += 1;
+                    break;
+                case 'player':
+                    //log result to the console
+                    console.log(`Computer choice ${computerChoice} and you choosed ${playerChoice}, you WON!!`);
+                    //increase player wins counter
+                    playerWinsCount += 1;
+                    break;
+                case 'computer':
+                    //log result to the console
+                    console.log(`Computer choice ${computerChoice} and you choosed ${playerChoice}, you lose!!`);
+                    //increase computer wins counter
+                    computerWinsCount += 1;
+                    break;
+            }
         }
+
+        //final result:
+        console.log(`Computer wins: ${computerWinsCount}, your wins: ${playerWinsCount} and ties ${tieCount}.${(playerWinsCount > computerWinsCount) ? ' ,you WON!!' : (computerWinsCount > playerWinsCount) ? ' ,you lose.' : 'It\'s a tie.'}`);
     </script>
 </body>
 
