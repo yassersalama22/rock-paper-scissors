@@ -30,48 +30,59 @@ function playRound(e) {
 
     playerChoice = e.target.dataset.value;
     
-    calculateResult(computerChoice,playerChoice);
+    const result = calculateResult(computerChoice,playerChoice);
 
-    displayResult();
+    const message = `You've chosen ${playerChoice} and computer has chosen ${computerChoice}. ${result}`;
+
+    displayResult(message);
 }
 
 function calculateResult(computerChoice, playerChoice)
 {
     if (playerChoice === computerChoice) {
-        tieCount += 1;;
+        tieCount += 1;
+        return "It's a tie.";
     }
     else if (playerChoice === 'rock') {
         if (computerChoice == 'paper') {
             computerWinsCount += 1;
+            return "Computer wins!";
         }
         else {
             playerWinsCount += 1;
+            return "You wins!";
         }
     }
     else if (playerChoice === 'paper') {
         if (computerChoice == 'scissors') {
             computerWinsCount += 1;
+            return "Computer wins!";
         }
         else {
             playerWinsCount += 1;
+            return "You wins!";
         }
     }
     else if (playerChoice === 'scissors') {
         if (computerChoice == 'rock') {
             computerWinsCount += 1;
+            return "Computer wins!";
         }
         else {
             playerWinsCount += 1;
+            return "You wins!";
         }
     }
 }
 
-function displayResult() {
+function displayResult(message) {
     const humanScore = document.querySelector(".human-score");
     const computerScore = document.querySelector(".computer-score");
+    const resultMessage = document.querySelector(".result-message");
 
     humanScore.textContent = playerWinsCount;
     computerScore.textContent = computerWinsCount;
+    resultMessage.textContent = message;
 }
 
 
